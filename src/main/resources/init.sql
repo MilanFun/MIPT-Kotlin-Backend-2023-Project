@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS BlogPost;
+CREATE TABLE BlogPost (
+    id VARCHAR(60) DEFAULT RANDOM_UUID() PRIMARY KEY,
+    post TEXT,
+    created TIMESTAMP,
+    updated TIMESTAMP
+);
