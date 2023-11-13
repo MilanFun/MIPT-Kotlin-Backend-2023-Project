@@ -1,13 +1,16 @@
-import org.codehaus.groovy.tools.shell.util.Logger.io
+val kotlin_version: String = "1.9.0"
+val ktor_version: String = "1.6.5"
+val logback_version: String = "1.2.6"
 
 plugins {
     kotlin("jvm") version "1.9.0"
     id("io.ktor.plugin") version "2.3.5"
+    kotlin("plugin.serialization").version("1.9.10")
     application
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "kotlin.course.1c"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -15,17 +18,18 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("io.ktor:ktor-server-netty:1.6.5")
-    implementation("io.ktor:ktor-server-core:1.6.7-eap-282")
-    implementation("io.ktor:ktor-gson:1.6.5")
-    implementation("org.ktorm:ktorm-core:3.2.0")
-    implementation("org.slf4j:slf4j-api:1.7.32")
-    implementation("com.google.code.gson:gson:2.8.9")
-    implementation("ch.qos.logback:logback-classic:1.2.6")
-    implementation("io.ktor:ktor-server-content-negotiation")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:1.6.5")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+    implementation("io.ktor:ktor-server-core:$ktor_version")
+    implementation("io.ktor:ktor-server-netty:$ktor_version")
+    implementation("io.ktor:ktor-server-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-xml:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-cbor:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-protobuf:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
 
 tasks.test {

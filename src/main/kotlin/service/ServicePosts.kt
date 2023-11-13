@@ -20,24 +20,24 @@ class ServicePosts {
         return null
     }
 
-    fun save(post: String?) {
+    fun save(post: Posts) {
         val currentTimestamp = LocalDateTime.now()
-        val post: Posts = Posts(idCounter, post, currentTimestamp, currentTimestamp)
+        post.id = idCounter
+        post.updated = currentTimestamp
+        post.created = currentTimestamp
         posts += post
         idCounter++
     }
 
-    fun update(id: Int, post: String?) {
+    fun update(post: String, id: Int) : Boolean {
         val currentTimestamp = LocalDateTime.now()
-        var it: Posts? = getPostById(id)
-        if (it != null) {
-            if (post == null) {
-                it.post = ""
-            } else {
-                it.post = post
-            }
-            it.updated = currentTimestamp
+        val blogPost = getPostById(id)
+        if (blogPost != null) {
+            blogPost.post = post
+            blogPost.updated = currentTimestamp
+            return true
         }
+        return false
     }
 
     fun delete(id: Int) {
@@ -45,5 +45,9 @@ class ServicePosts {
         if (post != null) {
             posts -= post
         }
+    }
+
+    private fun exist(post: Posts) : Boolean {
+        return posts.contains(post)
     }
 }
