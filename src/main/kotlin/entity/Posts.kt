@@ -9,5 +9,6 @@ import java.time.LocalDateTime
 data class Posts(@SerialName("id") var id: Int? = null,
                  @SerialName("post") var post: String,
                  @Serializable(with = LocalDateSerializer::class) var created: LocalDateTime? = null,
-                 @Serializable(with = LocalDateSerializer::class) var updated: LocalDateTime? = null
+                 @Serializable(with = LocalDateSerializer::class) var updated: LocalDateTime? = null,
+                 var user: User? = null
 )

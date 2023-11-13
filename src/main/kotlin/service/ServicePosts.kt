@@ -1,6 +1,7 @@
 package service
 
 import entity.Posts
+import entity.User
 import java.time.LocalDateTime
 
 class ServicePosts {
@@ -20,11 +21,12 @@ class ServicePosts {
         return null
     }
 
-    fun save(post: Posts) {
+    fun save(post: Posts, user: User) {
         val currentTimestamp = LocalDateTime.now()
         post.id = idCounter
         post.updated = currentTimestamp
         post.created = currentTimestamp
+        post.user = user
         posts += post
         idCounter++
     }
